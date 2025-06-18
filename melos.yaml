@@ -1,0 +1,5 @@
+name: bloc_architecture
+
+packages:
+  - ./
+  - packages/**
