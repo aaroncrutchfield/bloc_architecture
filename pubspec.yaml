@@ -1,5 +1,5 @@
 name: bloc_architecture
-description: A Very Good Project created by Very Good CLI.
+description: A Flutter project for learning Bloc architecture.
 version: 1.0.0+1
 publish_to: none
 
@@ -19,6 +19,7 @@ dev_dependencies:
   bloc_test: ^10.0.0
   flutter_test:
     sdk: flutter
+  melos: ^6.3.3
   mocktail: ^1.0.4
   very_good_analysis: ^9.0.0
 
