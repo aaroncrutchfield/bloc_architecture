@@ -1,4 +1,4 @@
-import 'package:bloc_architecture/counter/counter.dart';
+import 'package:bloc_architecture/app/navigation/navigation.dart';
 import 'package:bloc_architecture/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +7,8 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: appRouter.config(),
       theme: ThemeData(
         appBarTheme: AppBarTheme(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -16,7 +17,6 @@ class App extends StatelessWidget {
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const CounterPage(),
     );
   }
 }
