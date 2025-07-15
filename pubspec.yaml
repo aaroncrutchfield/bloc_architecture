@@ -1,6 +1,6 @@
 name: bloc_architecture
 description: A Flutter project for learning Bloc architecture.
-version: 1.0.0+1
+version: 1.1.0
 publish_to: none
 
 environment:
