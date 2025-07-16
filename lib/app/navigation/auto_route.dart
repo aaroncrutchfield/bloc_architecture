@@ -5,6 +5,6 @@ import 'package:bloc_architecture/app/navigation/auto_route.gr.dart';
 class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
-    AutoRoute(path: '/', page: CounterRoute.page, initial: true),
+    AutoRoute(path: '/', page: IntroRoute.page, initial: true),
   ];
 }
