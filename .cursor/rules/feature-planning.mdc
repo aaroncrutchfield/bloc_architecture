@@ -1,0 +1,162 @@
+---
+description: When planning new features
+alwaysApply: false
+---
+
+# Feature Planning Guide
+
+This guide helps plan new features by creating GitHub issues for each architectural layer, incorporating testing (Unit, Widget, E2E) and isolated UI development with Widgetbook.
+
+## Feature: [Feature Name]
+
+### 1. Data Layer
+
+*   **Tasks**: Implement a data client/service and associated unit tests.
+*   **Issue Title**: feat([Feature Name]): Implement Data Layer
+*   **Issue Body**:
+    ```
+    <!--
+    about: A new feature to be added to the project
+    title: "feat: [Feature Name] - Data Layer"
+    -->
+
+    ## Description
+
+    Implement the data provider for the [Feature Name] feature. This aligns with the **Data Layer** in our architecture. The package should be named according to its data source (e.g., `remote_api`, `local_storage_client`, `firebase_service`).
+
+    ## Requirements
+
+    - [ ] Create/update the data source package. The name should reflect the source, for example:
+        - `very_good create flutter_package [source]_api`
+        - `very_good create flutter_package [source]_client`
+        - `very_good create flutter_package [source]_service`
+    - [ ] Implement methods to communicate with the data source.
+    - [ ] Define data transfer objects (DTOs) if needed.
+    - [ ] Write unit tests for the data provider with 100% test coverage.
+
+    ## Additional Context
+
+    This issue implements the Data Layer as defined in our Very Good Architecture principles. The data layer should be free of business logic and focus solely on retrieving raw data from external sources.
+
+    <!-- If applicable, add labels for device and app/service -->
+    /label ~"Type::Feature"
+    ```
+
+### 2. Repository Layer
+
+*   **Tasks**: Create a repository, define domain models, and write unit tests.
+*   **Issue Title**: feat([Feature Name]): Implement Repository Layer
+*   **Issue Body**:
+    ```
+    <!--
+    about: A new feature to be added to the project
+    title: "feat: [Feature Name] - Repository Layer"
+    -->
+
+    ## Description
+
+    Create a repository for the [Feature Name] feature. This aligns with the **Repository Layer** in our architecture. The repository will compose data clients and apply business rules to the data.
+
+    ## Requirements
+
+    - [ ] Create the repository package (e.g., `[feature_name]_repository`).
+    - [ ] Define the core domain models in `src/models`.
+    - [ ] Implement the concrete `[FeatureName]Repository` class.
+    - [ ] Write unit tests for the repository and models with 100% test coverage.
+
+    ## Additional Context
+
+    This issue implements the Repository Layer as defined in our Very Good Architecture principles. The repository should not import Flutter dependencies and should not depend on other repositories.
+
+    <!-- If applicable, add labels for device and app/service -->
+    /label ~"Type::Feature"
+    ```
+
+### 3. Business Logic Layer (Bloc)
+
+*   **Tasks**: Implement the Bloc/Cubit and its unit tests.
+*   **Issue Title**: feat([Feature Name]): Implement Business Logic Layer
+*   **Issue Body**:
+    ```
+    <!--
+    about: A new feature to be added to the project
+    title: "feat: [Feature Name] - Business Logic Layer"
+    -->
+
+    ## Description
+
+    Implement the Bloc/Cubit for the [Feature Name] feature. This aligns with the **Business Logic Layer** in our architecture. The Bloc will implement feature-specific logic using repositories.
+
+    ## Requirements
+
+    - [ ] Create the feature directory and Bloc files (`bloc`, `event`, `state`).
+    - [ ] Implement business logic to interact with the repository.
+    - [ ] Write unit tests for the Bloc/Cubit with 100% test coverage.
+
+    ## Additional Context
+
+    This issue implements the Business Logic Layer as defined in our Very Good Architecture principles. The Bloc should have no dependencies on the Flutter SDK and no direct dependencies on other business logic components.
+
+    <!-- If applicable, add labels for device and app/service -->
+    /label ~"Type::Feature"
+    ```
+
+### 4. Presentation Layer (UI)
+
+*   **Tasks**: Build UI components in Widgetbook and write widget tests.
+*   **Issue Title**: feat([Feature Name]): Implement Presentation Layer
+*   **Issue Body**:
+    ```
+    <!--
+    about: A new feature to be added to the project
+    title: "feat: [Feature Name] - Presentation Layer"
+    -->
+
+    ## Description
+
+    Implement the UI for the [Feature Name] feature. This aligns with the **Presentation Layer** in our architecture. The UI will display elements and handle user interactions while connecting to the Business Logic Layer.
+
+    ## Requirements
+
+    - [ ] Use Widgetbook to build UI components in isolation.
+    - [ ] Create the feature's pages and views.
+    - [ ] Create all necessary widgets.
+    - [ ] Connect the UI to the `[FeatureName]Bloc`.
+    - [ ] Write widget tests for all new widgets with 100% test coverage.
+
+    ## Additional Context
+
+    This issue implements the Presentation Layer as defined in our Very Good Architecture principles. No business logic should exist in this layer - it should only interact with the business logic layer.
+
+    <!-- If applicable, add labels for device and app/service -->
+    /label ~"Type::Feature"
+    ```
+
+### 5. End-to-End Testing
+
+*   **Tasks**: Write E2E tests using Maestro to validate the full feature flow.
+*   **Issue Title**: test([Feature Name]): Implement E2E tests
+*   **Issue Body**:
+    ```
+    <!--
+    about: Adding missing tests or correcting existing tests
+    title: "test: [Feature Name] - E2E Tests"
+    -->
+
+    ## Description
+
+    Implement end-to-end (E2E) tests for the [Feature Name] feature using Maestro to ensure it functions correctly from the user's perspective. This will validate the complete feature flow across all architectural layers.
+
+    **This issue depends on the completion of the Presentation, Bloc, Repository, and Data layer issues.**
+
+    ## Requirements
+
+    - [ ] Identify key user flows for the [Feature Name] feature.
+    - [ ] Write Maestro test flows for the identified user journeys.
+    - [ ] Run tests on emulators/devices and ensure they pass.
+    - [ ] There is no drop in test coverage.
+
+    <!-- If applicable, add labels for device and app/service -->
+    /label ~"Type::Test"
+    ```
+

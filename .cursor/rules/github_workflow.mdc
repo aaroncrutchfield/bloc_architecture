@@ -1,0 +1,58 @@
+---
+description: Use when committing and pushing to git/github
+alwaysApply: false
+---
+## Contribution Workflow
+
+### Step 1: Understand and Define the Change
+
+1.  **Analyze Staged Changes**: Examine `git` staged files to understand the change's scope.
+2.  **Determine Commit Type**: Classify the change using a conventional commit type (e.g., `feat`, `fix`, `refactor`).
+3.  **Propose Naming**: Suggest a branch name, issue title, and commit message.
+    *   **Title**: `refactor(auth): migrate auth service to authentication repository`
+    *   **Branch**: `refactor/auth-repository-migration`
+4.  **Confirm with User**: Always confirm the proposed names with the user before proceeding.
+
+### Step 2: Create a GitHub Issue
+
+1.  **Use Templates**: Create an issue for every change using the appropriate template from [`.github/issue_templates`](mdc:.github/issue_templates).
+2.  **Generate a Description**: The issue body must explain the change's context and goals, including a task checklist.
+3.  **Create the Issue**: Use the GitHub tool to create the issue.
+4.  **Assign the User**: After creating the issue, assign it to the user who initiated the request. The user's GitHub username will be retrieved dynamically.
+
+### Step 3: Create a Branch and Commit
+
+1.  **Fetch Remote Changes**: Run `git fetch`.
+2.  **Checkout Branch**: Run `git checkout <branch_name>`.
+3.  **Craft the Commit Message**: Create a detailed, multi-line commit message following the structure defined above.
+    ```
+    refactor(auth): migrate auth service to authentication repository
+
+    Encapsulates all Firebase Auth interactions within the new, isolated package.
+    This change simplifies testing and improves separation of concerns.
+
+    - Replaces the legacy AuthService with AuthenticationRepository.
+    - Removes the now-obsolete auth_service.dart.
+    - Establishes a clear, reusable interface for auth operations.
+    ```
+4.  **Commit Changes**: Use `git commit` to commit the staged files.
+
+### Step 4: Push and Create a Pull Request
+
+1.  **Push Branch**: Push the branch to the remote repository.
+2.  **Use PR Template**: When creating the pull request, use the template from [`PULL_REQUEST_TEMPLATE.md`](mdc:.github/PULL_REQUEST_TEMPLATE.md).
+3.  **Create Pull Request**:
+    *   The title should match the commit/issue title.
+    *   The body MUST link to the issue it resolves (e.g., `Closes #<issue_number>`).
+    *   Fill out the template checklist.
+    *   Create the pull request using the GitHub tool.
+4.  **Assign the User**: After creating the pull request, assign it to the user who initiated the request.
+
+### Step 5: Updating an Existing Pull Request
+
+1.  **Commit and Push Changes**: Commit and push new changes to the same branch.
+2.  **Revise PR Description**: Revise the entire pull request description to ensure it provides a comprehensive and accurate summary of all changes included in the branch. The description should be a single, cohesive summary, not a log of updates.
+
+    *   The body MUST link to the issue it resolves (e.g., `Closes #<issue_number>`).
+    *   Fill out the template checklist.
+    *   Create the pull request using the GitHub tool.
